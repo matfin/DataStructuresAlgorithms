@@ -39,5 +39,7 @@ int main(int argc, const char * argv[]) {
     
     printItems(append_head);
     
+    struct Person *copied = copyList(append_head);
+    
     return 0;
 }

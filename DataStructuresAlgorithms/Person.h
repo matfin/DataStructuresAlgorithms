@@ -10,8 +10,8 @@
 #define Person_h
 
 struct Person {
-    const char *firstname;
-    const char *lastname;
+    char *firstname;
+    char *lastname;
     int age;
     struct Person *next;
 };

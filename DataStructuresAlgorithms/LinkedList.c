@@ -119,6 +119,27 @@ void changeToNull(struct Person **head_ref) {
     *head_ref = NULL;
 }
 
+struct Person* copyList(struct Person *head) {
+    struct Person *current = head;
+    struct Person *newPerson = NULL;
+    struct Person *tail = NULL;
+    
+    while(current != NULL) {
+        if(newPerson == NULL) {
+            newPerson = setup(current->firstname, current->lastname, current->age);
+            tail = newPerson;
+        }
+        else {
+            tail->next = setup(current->firstname, current->lastname, current->age);
+            tail = tail->next;
+            tail->next = NULL;
+        }
+        current = current->next;
+    }
+    
+    return newPerson;
+}
+
 int listSize(struct Person *head) {
     struct Person *current = head;
     int count = 0;
@@ -137,7 +158,7 @@ void printItems(struct Person *head) {
      *  the elements of a linked list.
      */
     for(current = head; current != NULL; current = current->next) {
-        printf("%s %s is %i.\n", current->firstname, current->lastname, current->age);
+        printf("%s %s \t %i.\n", current->firstname, current->lastname, current->age);
     }
 }
 
