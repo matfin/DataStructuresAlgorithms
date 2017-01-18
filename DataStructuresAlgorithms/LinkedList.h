@@ -18,7 +18,10 @@ struct Person* buildOneTwoThree();
 struct Person* buildTwoThree();
 void wrongPush(struct Person *head, char *_firstname, char *_lastname, int _age);
 void push(struct Person **head_ref, char *_firstname, char *_lastname, int _age);
+void append(struct Person **head_ref, char *_firstname, char *_lastname, int _age);
+void changeToNull(struct Person **head_ref);
 int listSize(struct Person *head);
+void printItems(struct Person *head);
 void paramaterModTest(int *a);
 
 #endif /* LinkedList_h */

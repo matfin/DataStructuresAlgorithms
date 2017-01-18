@@ -18,11 +18,26 @@ int main(int argc, const char * argv[]) {
     push(&head, "Third", "Person", 3);
     push(&head, "Fourth", "Person", 4);
     
-    struct Person *current = head;
-    while(current != NULL) {
-        printf("Person: %s %s, %i.\n", current->firstname, current->lastname, current->age);
-        current = current->next;
-    }
+    printItems(head);
+    
+    struct Person *empty_head = NULL;
+    push(&empty_head, "One", "Empty", 1);
+    push(&empty_head, "Two", "Empty", 2);
+    
+    printItems(empty_head);
+    
+    struct Person *first_null = setup("Item", "One", 1);
+    struct Person *second_null = setup("Second", "Item", 2);
+    
+    changeToNull(&first_null);
+    changeToNull(&second_null);
+    
+    struct Person *append_head = setup("Tail", "Head", 1);
+    append(&append_head, "Tail", "Added", 2);
+    append(&append_head, "Added", "Tailagain", 3);
+    append(&append_head, "Atthe", "Tailend", 4);
+    
+    printItems(append_head);
     
     return 0;
 }

@@ -100,6 +100,25 @@ void push(struct Person **head_ref, char *_firstname, char *_lastname, int _age)
     *head_ref = newPerson;
 }
 
+void append(struct Person **head_ref, char *_firstname, char *_lastname, int _age) {
+    struct Person *current = *head_ref;
+    struct Person *newPerson = setup(_firstname, _lastname, _age);
+    
+    if(current == NULL) {
+        *head_ref = newPerson;
+    }
+    else {
+        while(current->next != NULL) {
+            current = current->next;
+        }
+        current->next = newPerson;
+    }
+}
+
+void changeToNull(struct Person **head_ref) {
+    *head_ref = NULL;
+}
+
 int listSize(struct Person *head) {
     struct Person *current = head;
     int count = 0;
@@ -108,6 +127,18 @@ int listSize(struct Person *head) {
         current = current->next;
     }
     return count;
+}
+
+void printItems(struct Person *head) {
+    struct Person *current = head;
+    
+    /**
+     *  Using and alternative to a while loop to iterate through
+     *  the elements of a linked list.
+     */
+    for(current = head; current != NULL; current = current->next) {
+        printf("%s %s is %i.\n", current->firstname, current->lastname, current->age);
+    }
 }
 
 void paramaterModTest(int *a) {
