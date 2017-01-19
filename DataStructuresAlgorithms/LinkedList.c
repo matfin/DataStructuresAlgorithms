@@ -5,7 +5,7 @@
 //  Created by Matt Finucane on 17/01/2017.
 //  Copyright © 2017 Matt Finucane. All rights reserved.
 //
-
+#include <string.h>
 #include "LinkedList.h"
 
 struct Person* setup(char *_firstname, char *_lastname, int _age) {
@@ -190,6 +190,60 @@ struct Person* copyList(struct Person *head) {
      *  different memory location.
      */
     return newPerson;
+}
+
+struct Person* find(struct Person *list, const char *name) {
+    
+    /**
+     *  Set up a pointer to current which we will use for iteration.
+     */
+    struct Person *current;
+    
+    /**
+     *  Iterate, advancing the *current pointer until it is null
+     *  by using ->next each time.
+     */
+    for(current = list; current != NULL; current = current->next) {
+        
+        /**
+         *  Declare a new string and allocate memory for it based on
+         *  - the string length of the Person->firstname
+         *  - the string length of the Person->lastname
+         *  - 2 bytes for the space between the names and the null terminator '\0'
+         */
+        char *fullname = malloc(strlen(current->firstname) + strlen(current->lastname) + 2);
+        
+        /**
+         *  Copy the Person->firstname into the fullname string and 
+         *  then concatenate the space and Person->lastname.
+         */
+        strcpy(fullname, current->firstname);
+        strcat(fullname, " ");
+        strcat(fullname, current->lastname);
+        
+        /**
+         *  Call the strcmp function to compare the two strings.
+         *  This will return an int 0 for a match or another int 
+         *  when there is a difference.
+         *
+         *  We then free the memory occupied by the fullname* char
+         *  since we no longer need it.
+         */
+        int found = strcmp(name, fullname);
+        free(fullname);
+        
+        /**
+         *  If found we return a pointer to current.
+         */
+        if(found == 0) {
+            return current;
+        }
+    }
+    
+    /**
+     *  Or we return null.
+     */
+    return NULL;
 }
 
 int listSize(struct Person *head) {

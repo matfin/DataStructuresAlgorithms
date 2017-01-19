@@ -17,6 +17,7 @@ struct Person* setup(char *_firstname, char *_lastname, int _age);
 struct Person* buildOneTwoThree();
 struct Person* buildTwoThree();
 struct Person* copyList(struct Person *head);
+struct Person* find(struct Person *list, const char *name);
 
 void wrongPush(struct Person *head, char *_firstname, char *_lastname, int _age);
 void push(struct Person **head_ref, char *_firstname, char *_lastname, int _age);

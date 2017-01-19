@@ -34,6 +34,8 @@ int listPushDemo() {
     printItems(head);
     printf("\n\n");
     
+    free(head);
+    
     return 0;
 }
 
@@ -60,6 +62,8 @@ int listAppendDemo() {
     printItems(head);
     printf("\n\n");
     
+    free(head);
+    
     return 0;
 }
 
@@ -84,6 +88,36 @@ int listCopyDemo() {
     printItems(copy);
     printf("\n\n");
     
+    free(head);
+    free(copy);
+    
+    return 0;
+}
+
+/**
+ *  Demonstrating using find() inside a linked list to 
+ *  search for a Person by name.
+ */
+int findDemo(const char *term) {
+    
+    struct Person *list = setup("Find", "Else", 1);
+    append(&list, "Someones", "Name", 2);
+    append(&list, "Matt", "Finucane", 34);
+    append(&list, "Anna", "Christoffer", 31);
+    append(&list, "Another", "Person", 3);
+    append(&list, "And", "Again", 4);
+    
+    struct Person *found = find(list, term);
+    
+    if(found != NULL) {
+        printf("Found %s %s, %i with the term \"%s\".\n", found->firstname, found->lastname, found->age, term);
+    }
+    else {
+        printf("Could not find a result with term: \"%s\".\n", term);
+    }
+    
+    free(list);
+    
     return 0;
 }
 
@@ -92,6 +126,8 @@ int main(int argc, const char * argv[]) {
     int a = listPushDemo();
     int b = listAppendDemo();
     int c = listCopyDemo();
-    
-    return (a + b + c);
+    int d = findDemo("Not Found");
+    int e = findDemo("Matt Finucane");
+        
+    return (a + b + c + d + e);
 }
