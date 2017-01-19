@@ -122,23 +122,77 @@ int findDemo(const char *term) {
     return 0;
 }
 
-int main(int argc, const char * argv[]) {
-//    int a = listPushDemo();
-//    int b = listAppendDemo();
-//    int c = listCopyDemo();
-//    int d = findDemo("Not Found");
-//    int e = findDemo("Matt Finucane");
-//        
-//    return (a + b + c + d + e);
+int shiftDemo() {
     
-    /**
-     *  Demoing function pointers
-     */
-    int a = function_pointer_demo_main(10);
-    int b = function_pointer_demo_main(-2);
+    struct Person *head = setup("First", "Person", 1);
+    append(&head, "Second", "Person", 2);
+    append(&head, "Third", "Person", 3);
+    append(&head, "Fourth", "Person", 4);
+    append(&head, "Fifth", "Person", 5);
+    append(&head, "Sixth", "Person", 6);
+    
+    printf("List in this current state before shift() has %i items.\n", listSize(head));
+    printItems(head);
+    
+    shift(&head);
+    printf("Shifting an item from the start yields %i items.\n", listSize(head));
+    printItems(head);
+    
+    shift(&head);
+    shift(&head);
+    shift(&head);
+    printf("Shifting more items from the start yields %i items.\n", listSize(head));
+    printItems(head);
+    
+    shift(&head);
+    shift(&head);
+    shift(&head);
+    shift(&head);
+
+    free(head);
+    
+    return 0;
+}
+
+int popDemo() {
+    struct Person *head = setup("First", "Pop", 1);
+    append(&head, "Second", "Pop", 2);
+    append(&head, "Third", "Pop", 3);
+    append(&head, "Fourth", "Pop", 4);
+    append(&head, "Fifth", "Pop", 5);
+    append(&head, "Sixth", "Pop", 6);
+    
+    printf("List in this current state before pop() has %i items.\n", listSize(head));
+    printItems(head);
+    
+    pop(&head);
+    printf("Popping items from the end yields %i items.\n", listSize(head));
+    printItems(head);
+    
+    pop(&head);
+    pop(&head);
+    printf("Popping more items from the end yields %i items.\n", listSize(head));
+    printItems(head);
+    
+    return 0;
+}
+
+int main(int argc, const char * argv[]) {
+    
+    int a = listPushDemo();
+    int b = listAppendDemo();
+    int c = listCopyDemo();
+    int d = findDemo("Not Found");
+    int e = findDemo("Matt Finucane");
+    int f = shiftDemo();
+    int g = popDemo();
+    
+
+    int h = function_pointer_demo_main(10);
+    int i = function_pointer_demo_main(-2);
     printf("a: %i, b: %i.\n", a, b);
     
     function_pointer_arguments_demo();
     
-    return 0;
+    return (a + b + c + d + e + f + g + h + i);
 }

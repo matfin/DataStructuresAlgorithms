@@ -6,6 +6,7 @@
 //  Copyright © 2017 Matt Finucane. All rights reserved.
 //
 #include <string.h>
+#include <assert.h>
 #include "LinkedList.h"
 
 struct Person* setup(char *_firstname, char *_lastname, int _age) {
@@ -112,6 +113,37 @@ void append(struct Person **head_ref, char *_firstname, char *_lastname, int _ag
             current = current->next;
         }
         current->next = newPerson;
+    }
+}
+
+void shift(struct Person **head_ref) {
+    struct Person *current = *head_ref;
+    struct Person *tmp = *head_ref;
+    if(current != NULL) {
+        current = current->next;
+        *head_ref = current;
+    }
+    free(tmp);
+}
+
+void pop(struct Person **head_ref) {
+    
+    struct Person *tmp = NULL;
+    
+    if(*head_ref != NULL && (*head_ref)->next == NULL) {
+        (*head_ref) = NULL;
+        free(*head_ref);
+    }
+    
+    for(struct Person *p = *head_ref; p != NULL; p = p->next) {
+        if(p->next != NULL && p->next->next == NULL) {
+            tmp = p;
+        }
+    }
+    
+    if(tmp != NULL) {
+        tmp->next = NULL;
+        free(tmp->next);
     }
 }
 
