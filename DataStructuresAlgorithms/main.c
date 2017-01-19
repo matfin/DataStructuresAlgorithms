@@ -8,6 +8,7 @@
 
 #include "Person.h"
 #include "LinkedList.h"
+#include "FunctionPointerDemo.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -122,12 +123,17 @@ int findDemo(const char *term) {
 }
 
 int main(int argc, const char * argv[]) {
-
-    int a = listPushDemo();
-    int b = listAppendDemo();
-    int c = listCopyDemo();
-    int d = findDemo("Not Found");
-    int e = findDemo("Matt Finucane");
-        
-    return (a + b + c + d + e);
+//    int a = listPushDemo();
+//    int b = listAppendDemo();
+//    int c = listCopyDemo();
+//    int d = findDemo("Not Found");
+//    int e = findDemo("Matt Finucane");
+//        
+//    return (a + b + c + d + e);
+    
+    int a = function_pointer_demo_main(10);
+    int b = function_pointer_demo_main(-2);
+    printf("a: %i, b: %i.\n", a, b);
+    
+    return 0;
 }

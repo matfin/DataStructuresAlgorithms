@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5869ACCB1E2EA86600182916 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 5869ACCA1E2EA86600182916 /* main.c */; };
 		5869ACD41E2EAA5000182916 /* LinkedList.c in Sources */ = {isa = PBXBuildFile; fileRef = 5869ACD21E2EAA5000182916 /* LinkedList.c */; };
+		5869ACD71E30CCC100182916 /* FunctionPointerDemo.c in Sources */ = {isa = PBXBuildFile; fileRef = 5869ACD51E30CCC100182916 /* FunctionPointerDemo.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		5869ACD11E2EA95000182916 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		5869ACD21E2EAA5000182916 /* LinkedList.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LinkedList.c; sourceTree = "<group>"; };
 		5869ACD31E2EAA5000182916 /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
+		5869ACD51E30CCC100182916 /* FunctionPointerDemo.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FunctionPointerDemo.c; sourceTree = "<group>"; };
+		5869ACD61E30CCC100182916 /* FunctionPointerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionPointerDemo.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,8 @@
 				5869ACD11E2EA95000182916 /* Person.h */,
 				5869ACD21E2EAA5000182916 /* LinkedList.c */,
 				5869ACD31E2EAA5000182916 /* LinkedList.h */,
+				5869ACD51E30CCC100182916 /* FunctionPointerDemo.c */,
+				5869ACD61E30CCC100182916 /* FunctionPointerDemo.h */,
 			);
 			path = DataStructuresAlgorithms;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 			files = (
 				5869ACD41E2EAA5000182916 /* LinkedList.c in Sources */,
 				5869ACCB1E2EA86600182916 /* main.c in Sources */,
+				5869ACD71E30CCC100182916 /* FunctionPointerDemo.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
