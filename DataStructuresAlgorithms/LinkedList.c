@@ -120,23 +120,75 @@ void changeToNull(struct Person **head_ref) {
 }
 
 struct Person* copyList(struct Person *head) {
+    /**
+     *  Create a copy of the head pointer and 
+     *  assign it to a new pointer *current.
+     */
     struct Person *current = head;
+    /**
+     *  Teeing up a pointer to a *newPerson with
+     *  an initial value of NULL.
+     */
     struct Person *newPerson = NULL;
+    /**
+     *  Doing the same thing for the *tail pointer.
+     */
     struct Person *tail = NULL;
     
+    /**
+     *  Iterate through the current pointer and keep 
+     *  going through it...
+     *
+     *  Since *current is a copy of the *head pointer,
+     *  we can loop through it without affecting the 
+     *  *head pointer passed in.
+     *  
+     *  In this while loop, current will be set to 
+     *  current->next each time.
+     */
     while(current != NULL) {
+        /**
+         *  If the *newPerson is null, we use the setup() function defined
+         *  above to allocate memory for it and assign it values. This will 
+         *  tee up the first Person in the list.
+         */
         if(newPerson == NULL) {
             newPerson = setup(current->firstname, current->lastname, current->age);
+            /**
+             *  We then point the *tail pointer to the same location as *newPerson.
+             *  This means that we can track what goes into *tail via *newPerson.
+             */
             tail = newPerson;
         }
         else {
+            /**
+             *  If *newPerson is not null, this means that it is not the 
+             *  first item in the list.
+             *
+             *  We use the setup() function defined above to allocate
+             *  memory and set the properties for the 'next' pointer
+             *  of the tail. We then advance the tail pointer and set that
+             *  objects next property to null.
+             */
             tail->next = setup(current->firstname, current->lastname, current->age);
             tail = tail->next;
             tail->next = NULL;
         }
+        /**
+         *  We then need to advance current to its next pointer via its
+         *  next property.
+         */
         current = current->next;
     }
     
+    /**
+     *  We then return a pointer to newPerson, which is pointing to the 
+     *  same location as the tail pointer we initialised as above. 
+     *
+     *  We now have a new linked list of items copied from the original
+     *  head linked list with completely separate data coming from a 
+     *  different memory location.
+     */
     return newPerson;
 }
 
