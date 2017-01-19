@@ -131,9 +131,14 @@ int main(int argc, const char * argv[]) {
 //        
 //    return (a + b + c + d + e);
     
+    /**
+     *  Demoing function pointers
+     */
     int a = function_pointer_demo_main(10);
     int b = function_pointer_demo_main(-2);
     printf("a: %i, b: %i.\n", a, b);
+    
+    function_pointer_arguments_demo();
     
     return 0;
 }
