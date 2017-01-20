@@ -16,6 +16,7 @@ struct Person* setup(char *_firstname, char *_lastname, int _age) {
      */
     struct Person *p = NULL;
     p = malloc(sizeof(struct Person));
+    assert(p != NULL);
     /**
      *  Then set the parameters using the 
      *  function arguments.
@@ -123,7 +124,6 @@ void shift(struct Person **head_ref) {
         current = current->next;
         *head_ref = current;
     }
-    free(tmp);
 }
 
 void pop(struct Person **head_ref) {
@@ -137,6 +137,7 @@ void pop(struct Person **head_ref) {
     
     for(struct Person *p = *head_ref; p != NULL; p = p->next) {
         if(p->next != NULL && p->next->next == NULL) {
+
             tmp = p;
         }
     }

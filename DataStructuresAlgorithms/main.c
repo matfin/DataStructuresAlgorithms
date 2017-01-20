@@ -35,6 +35,7 @@ int listPushDemo() {
     printItems(head);
     printf("\n\n");
     
+    head = NULL;
     free(head);
     
     return 0;
@@ -63,6 +64,7 @@ int listAppendDemo() {
     printItems(head);
     printf("\n\n");
     
+    head = NULL;
     free(head);
     
     return 0;
@@ -89,6 +91,8 @@ int listCopyDemo() {
     printItems(copy);
     printf("\n\n");
     
+    head = NULL;
+    copy = NULL;
     free(head);
     free(copy);
     
@@ -117,7 +121,10 @@ int findDemo(const char *term) {
         printf("Could not find a result with term: \"%s\".\n", term);
     }
     
+    list = NULL;
+    found = NULL;
     free(list);
+    free(found);
     
     return 0;
 }
@@ -149,6 +156,7 @@ int shiftDemo() {
     shift(&head);
     shift(&head);
 
+    head = NULL;
     free(head);
     
     return 0;
@@ -174,7 +182,112 @@ int popDemo() {
     printf("Popping more items from the end yields %i items.\n", listSize(head));
     printItems(head);
     
+    head = NULL;
+    free(head);
+    
     return 0;
+}
+
+void pointerIncrementDemo() {
+    
+    /**
+     *  Declare a linked list of four items.
+     */
+    struct Person *root = setup("Inc", "One", 1);
+    append(&root, "Inc", "Two", 2);
+    append(&root, "Inc", "Three", 3);
+    append(&root, "Inc", "Four", 4);
+    
+    /**
+     *  Declare a new pointer *current which
+     *  will be set to the *root pointer.
+     */
+    struct Person *current = root;
+    
+    /**
+     *  *current is now pointing to the same location as *root.
+     */
+    printf("Person: %s %s, %i.\n", current->firstname, current->lastname, current->age);
+    
+    /**
+     *  Increment *current to get the next item.
+     *  Note: doing this using pointer incrmeents is not recommended as it can cause crashes.
+     */
+    current++;
+    printf("Incremented: %s %s, %i.\n", current->firstname, current->lastname, current->age);
+
+    /**
+     *  Same as above.
+     */
+    current++;
+    printf("Incremented again: %s %s, %i.\n", current->firstname, current->lastname, current->age);
+    
+    /**
+     *  Cleanup.
+     */
+    root = NULL;
+    current = NULL;
+    free(root);
+    free(current);
+}
+
+void pointerNextDemo() {
+    
+    /**
+     *  Declare a linked list of four items.
+     */
+    struct Person *root = setup("Inc", "One", 1);
+    append(&root, "Inc", "Two", 2);
+    append(&root, "Inc", "Three", 3);
+    append(&root, "Inc", "Four", 4);
+    
+    /**
+     *  Declare a new pointer *current which 
+     *  will be set to the *root pointer.
+     */
+    struct Person *current = root;
+    
+    /**
+     *  *current is now pointing to the same location as *root.
+     */
+    printf("Person: %s %s, %i.\n", current->firstname, current->lastname, current->age);
+    
+    /**
+     *  Advance the current pointer by using current->next...
+     */
+    current = current->next;
+    printf("Next: %s %s, %i.\n", current->firstname, current->lastname, current->age);
+    
+    /**
+     *  Same as above.
+     */
+    current = current->next;
+    printf("Next again: %s %s, %i.\n", current->firstname, current->lastname, current->age);
+    
+    /**
+     *  Cleanup
+     */
+    root = NULL;
+    current = NULL;
+    free(root);
+    free(current);
+}
+
+void pointer_indirection_demo() {
+    int va = 3;
+    int *ptr_va = &va;
+    int **ptr_ptr_va = &ptr_va;
+    int ***ptr_ptr_ptr_va = &ptr_ptr_va;
+    int ****ptr_ptr_ptr_ptr_va = &ptr_ptr_ptr_va;
+    
+    ptr_va = NULL;
+    ptr_ptr_va = NULL;
+    ptr_ptr_ptr_va = NULL;
+    ptr_ptr_ptr_ptr_va = NULL;
+    free(ptr_va);
+    free(ptr_ptr_va);
+    free(ptr_ptr_ptr_va);
+    free(ptr_ptr_ptr_ptr_va);
 }
 
 int main(int argc, const char * argv[]) {
@@ -193,6 +306,24 @@ int main(int argc, const char * argv[]) {
     printf("a: %i, b: %i.\n", a, b);
     
     function_pointer_arguments_demo();
+    
+    /**
+     *  This works
+     */
+    for(int i = 0; i < 10; i++) {
+        printf("================== Next (%i) =====================\n", i);
+        pointerNextDemo();
+    }
+    
+    /**
+     *  And this is likely to crash.
+     */
+    for(int i = 0; i < 10; i++) {
+        printf("================= Increment (%i) =================\n", i);
+        pointerIncrementDemo();
+    }
+    
+    pointer_indirection_demo();
     
     return (a + b + c + d + e + f + g + h + i);
 }
